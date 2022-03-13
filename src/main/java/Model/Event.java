@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "events")
-public class Events {
+public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
@@ -28,7 +28,7 @@ public class Events {
 
     @Column
     @NotNull
-    public Boolean online;
+    public String online;
 
     @Column
     @NotNull
@@ -74,11 +74,11 @@ public class Events {
         this.location = location;
     }
 
-    public Boolean getOnline() {
+    public String getOnline() {
         return online;
     }
 
-    public void setOnline(Boolean online) {
+    public void setOnline(String online) {
         this.online = online;
     }
 

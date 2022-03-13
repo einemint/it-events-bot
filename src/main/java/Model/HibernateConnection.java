@@ -18,7 +18,7 @@ public class HibernateConnection {
         return metadata.getSessionFactoryBuilder().build();
     }
 
-    private static synchronized Session getSession() {
+    public static synchronized Session getSession() {
         return sessionFactory.openSession();
     }
 }
