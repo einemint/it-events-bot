@@ -4,35 +4,34 @@ import jakarta.persistence.*;
 
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "events")
+@Entity()
+@Table(name = "event")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
+    private Integer id;
 
     @Column
     @NotNull
-    public String type;
+    private String type;
 
     @Column
     @NotNull
-    public String title;
+    private String title;
 
     @Column
     @NotNull
-    public String date;
+    private String date;
 
     @Column
-    public String location;
+    private String location;
+
+    @Column
+    private String online;
 
     @Column
     @NotNull
-    public String online;
-
-    @Column
-    @NotNull
-    public String link;
+    private String link;
 
     public Integer getId() {
         return id;

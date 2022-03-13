@@ -1,2 +1,2 @@
-# it-events-bot
-Bot sends information about upcoming IT events
+# it-event-bot
+Bot sends information about upcoming IT event

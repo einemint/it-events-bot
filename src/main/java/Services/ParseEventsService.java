@@ -10,25 +10,22 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 public class ParseEventsService {
     public static final String DEFAULT_SITE_ADDRESS = "https://it-events.com/?type=upcoming";
     public static final int EVENTS_IN_PAGE_QUANTITY = 20;
 
-    private Session session = HibernateConnection.getSession();
-    private Transaction transaction = session.beginTransaction();
+    private static Session session = HibernateConnection.getSession();
+    private static Transaction transaction = session.beginTransaction();
 
-    private Document document;
-    private Elements itemLinks;
-    private Elements eventsLinks;
-    private Elements eventsInfoLinks;
-    private String siteAddress = "";
-    private int eventsQuantity = 0;
-    private int pagesQuantity = getPagesQuantity();
+    private static Document document;
+    private static Elements itemLinks;
+    private static Elements eventsLinks;
+    private static Elements eventsInfoLinks;
+    private static String siteAddress = "";
+    private static int eventsQuantity = 0;
+    private static int pagesQuantity = getPagesQuantity();
 
-    private int getPagesQuantity() {
+    private static int getPagesQuantity() {
         try {
             document = Jsoup.connect(DEFAULT_SITE_ADDRESS).get();
             itemLinks = document.select("li[class='nav-tabs-item nav-tabs-item_active nav-tabs-item_main']");
@@ -44,8 +41,7 @@ public class ParseEventsService {
         return pagesQuantity;
     }
 
-    private void parseEventsFromPage(int pageNumber) {
-        System.out.println("Start");
+    private static synchronized void parseEventsFromPage(int pageNumber) {
         try {
             siteAddress = "https://it-events.com/?page=" + pageNumber + "&type=upcoming";
             document = Jsoup.connect(siteAddress).get();
@@ -66,10 +62,11 @@ public class ParseEventsService {
         catch (Exception exception) { Logger.getInstance().fatal(exception.getStackTrace()); }
     }
 
-    public void parseEvents() {
+    public static synchronized void parseEvents() {
         for (int counter = 1; counter <= pagesQuantity; counter++) {
             parseEventsFromPage(counter);
         }
         transaction.commit();
+        session.close();
     }
 }

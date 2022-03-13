@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="WARN">
     <appenders>
-        <File name="parse_events_service" fileName="C:\Users\Ekaterina Smirnova\IdeaProjects\it-events-bot\logs\parse_events_service.log" immediateFlush="true">
+        <File name="parse_events_service" fileName="C:\Users\Ekaterina Smirnova\IdeaProjects\it-event-bot\logs\parse_events_service.log" immediateFlush="true">
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
             <LevelRangeFilter minlevel="info" maxlevel="info" onMatch="ACCEPT" onMismatch="DENY"/>
         </File>
