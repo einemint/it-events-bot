@@ -1,11 +1,8 @@
-import Log.Logger;
+import Config.Logger;
+
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.PhotoSize;
-
-import java.awt.*;
 
 public class MessageSender implements Runnable {
     private final int SENDER_SLEEP_TIME = 1000;
@@ -38,12 +35,7 @@ public class MessageSender implements Runnable {
             if (object instanceof SendMessage) {
                 BotApiMethod<Message> message = (BotApiMethod<Message>) object;
                 bot.execute(message);
-            }
-            if (object instanceof SendPhoto) {
-                BotApiMethod<PhotoSize> photo = (BotApiMethod<PhotoSize>) object;
-                bot.execute(photo);
-            }
-            else Logger.getInstance().fatal("Can't recognize response format");
+            } else Logger.getInstance().fatal("Can't recognize response format");
         }
         catch (Exception exception) { Logger.getInstance().fatal(exception.getStackTrace()); }
     }

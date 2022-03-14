@@ -1,4 +1,4 @@
-package Log;
+package Config;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -16,3 +16,4 @@ public class Logger {
         return instance;
     }
 }
+

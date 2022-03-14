@@ -12,36 +12,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetEventsService {
-    private static int eventsQuantity = 20;
-    private static String keyWord = "";
+    private int eventsQuantity = 20;
+    private String keyWord = "";
     private Session session = HibernateConnection.getSession();
+    private ParseEventsService parseEventsService = new ParseEventsService();
     private List<Event> events = getEventsList();
     private ArrayList<String> formattedEvents = new ArrayList<>();
     private StringBuffer eventInfo;
-    private StringBuffer eventsToString;
 
     private List<Event> getEventsList() {
-        ParseEventsService.parseEvents();
+        parseEventsService.parseEvents();
 
-        if (keyWord.isEmpty()) {
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<Event> criteriaQuery = criteriaBuilder.createQuery(Event.class);
-            Root<Event> rootEntry = criteriaQuery.from(Event.class);
-            CriteriaQuery<Event> all = criteriaQuery.select(rootEntry);
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Event> criteriaQuery = criteriaBuilder.createQuery(Event.class);
+        Root<Event> rootEntry = criteriaQuery.from(Event.class);
+        CriteriaQuery<Event> all = criteriaQuery.select(rootEntry);
+        TypedQuery<Event> allQuery = session.createQuery(all);
 
-            TypedQuery<Event> allQuery = session.createQuery(all);
-            return allQuery.getResultList();
-        }
-
-        else {
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<Event> criteriaQuery = criteriaBuilder.createQuery(Event.class);
-            Root<Event> rootEntry = criteriaQuery.from(Event.class);
-            CriteriaQuery<Event> all = criteriaQuery.select(rootEntry);
-
-            TypedQuery<Event> allQuery = session.createQuery(all);
-            return allQuery.getResultList();
-        }
+        return allQuery.setFirstResult(0).setMaxResults(eventsQuantity).getResultList();
     }
 
     private String getFormattedEventInfo(Event event) {
@@ -53,7 +41,7 @@ public class GetEventsService {
         if (!event.getOnline().isEmpty() && !event.getLocation().isEmpty()) {
             eventInfo.append(event.getOnline()).append(", ").append(event.getLocation());
         }
-        if (!event.getOnline().isEmpty() && event.getLocation().isEmpty()) {
+        else if (!event.getOnline().isEmpty() && event.getLocation().isEmpty()) {
             eventInfo.append(event.getOnline());
         }
         else { eventInfo.append(event.getLocation()); }
@@ -66,6 +54,10 @@ public class GetEventsService {
         formattedEvents.clear();
         for (int counter = 0; counter < eventsQuantity; counter++) {
             formattedEvents.add(getFormattedEventInfo(events.get(counter)));
+        }
+
+        if (!keyWord.isEmpty()) {
+            formattedEvents.removeIf(event -> !event.contains(keyWord));
         }
 
         return formattedEvents;

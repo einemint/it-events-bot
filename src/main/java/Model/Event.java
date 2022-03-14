@@ -1,6 +1,8 @@
 package Model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
@@ -9,83 +11,41 @@ import javax.validation.constraints.NotNull;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
+    @Getter
     private Integer id;
 
     @Column
     @NotNull
+    @Setter
+    @Getter
     private String type;
 
     @Column
     @NotNull
+    @Setter
+    @Getter
     private String title;
 
     @Column
     @NotNull
+    @Setter
+    @Getter
     private String date;
 
     @Column
+    @Setter
+    @Getter
     private String location;
 
     @Column
+    @Setter
+    @Getter
     private String online;
 
     @Column
     @NotNull
+    @Setter
+    @Getter
     private String link;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getOnline() {
-        return online;
-    }
-
-    public void setOnline(String online) {
-        this.online = online;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
 }

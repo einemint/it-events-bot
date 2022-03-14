@@ -10,7 +10,6 @@ public class CommandHandler {
 
     private GetEventsService getEventsService = new GetEventsService();
 
-    private Cat cat = new Cat();
     private GetEvents getEvents = new GetEvents(getEventsService);
     private Help help = new Help();
     private Settings settings = new Settings(getEventsService);
@@ -39,16 +38,11 @@ public class CommandHandler {
     public void handleMessage(String text, Long chatId, Bot bot) {
         text = text.trim();
 
-
         if (!text.isEmpty() && !isCommand(text)) {
             settings.executeCommand(text, chatId, bot);
         }
-        if (!text.isEmpty() && isCommand(text) && isCommandForBot(text)) {
+        else if (!text.isEmpty() && isCommand(text) && isCommandForBot(text)) {
             switch (text) {
-                case "/cat":
-                    cat.executeCommand(chatId, bot);
-                    break;
-
                 case "/getevents":
                     getEvents.executeCommand(chatId, bot);
                     break;

@@ -1,15 +1,24 @@
-import Log.Logger;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import Config.Logger;
+
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+@NoArgsConstructor
 public class Bot extends TelegramLongPollingBot {
     private final int RECONNECT_PAUSE = 10000;
+    @Setter
+    @Getter
     private String botName;
+    @Setter
+    @Getter
     private String token;
 
     public Bot (String botName, String token) {
@@ -17,26 +26,8 @@ public class Bot extends TelegramLongPollingBot {
         this.token = token;
     }
 
-    public Bot() {}
-
     public Queue sendQueue = new ConcurrentLinkedQueue();
     public Queue receiveQueue = new ConcurrentLinkedQueue();
-
-    public String getBotName() {
-        return botName;
-    }
-
-    public void setBotName(String botName) {
-        this.botName = botName;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 
     @Override
     public String getBotUsername() {

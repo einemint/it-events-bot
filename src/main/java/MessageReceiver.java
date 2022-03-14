@@ -1,4 +1,5 @@
-import Log.Logger;
+import Config.Logger;
+
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class MessageReceiver implements Runnable {
