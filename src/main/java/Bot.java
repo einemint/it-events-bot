@@ -8,16 +8,16 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Bot extends TelegramLongPollingBot {
+    private final int RECONNECT_PAUSE = 10000;
+    private String botName;
+    private String token;
+
     public Bot (String botName, String token) {
         this.botName = botName;
         this.token = token;
     }
 
     public Bot() {}
-
-    private final int RECONNECT_PAUSE = 10000;
-    private String botName;
-    private String token;
 
     public Queue sendQueue = new ConcurrentLinkedQueue();
     public Queue receiveQueue = new ConcurrentLinkedQueue();
