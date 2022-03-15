@@ -8,7 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateConnection {
-    public static final String HIBERNATE_CONFIG_FILE = "hibernate.cfg.xml";
+    private static final String HIBERNATE_CONFIG_FILE = "hibernate.cfg.xml";
     private static SessionFactory sessionFactory = getSessionFactory();
 
     private static SessionFactory getSessionFactory() {

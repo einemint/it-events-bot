@@ -39,7 +39,7 @@ public class CommandHandler {
         text = text.trim();
 
         if (!text.isEmpty() && !isCommand(text)) {
-            settings.executeCommand(text, chatId, bot);
+            if (settings.executeCommand(text, chatId, bot)) { getEvents.executeCommand(chatId, bot); }
         }
         else if (!text.isEmpty() && isCommand(text) && isCommandForBot(text)) {
             switch (text) {

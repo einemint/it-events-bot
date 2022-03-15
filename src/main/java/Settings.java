@@ -9,18 +9,12 @@ public class Settings {
     private final String REGEX_NUMBER = "[0-9]+";
     private final Pattern PATTERN_WORD = Pattern.compile(REGEX_WORD);
     private final Pattern PATTERN_NUMBER = Pattern.compile(REGEX_NUMBER);
+    private final String SETTINGS_TEXT_ACCESS = "Мои настройки успешно изменены! Список событий с новыми параметрами: ";
     private GetEventsService getEventsService;
 
     public Settings(GetEventsService getEventsService) { this.getEventsService = getEventsService; }
 
-    private final String SETTINGS_TEXT_ANSWER = "Пожалуйста, отправьте сообщение в формате \"Java\" без кавычек, "
-            + "если Вы желаете задать или изменить искомый язык программирования;\n\n"
-            + "Если Вы хотите изменить количество отображаемых событий - отправьте сообщение в формате \"10\" без кавычек;\n\n"
-            + "Если Вы хотите изменить и количество отображаемых событий, и задать или изменить язык программирования "
-            + "- отправьте сообщение в формате \"Java 10\" без кавычек";
-    private final String SETTINGS_TEXT_ACCESS = "Мои настройки успешно изменены! Попробуйте запросить события и получить их с новыми параметрами";
-
-    public void executeCommand(String text, Long chatId, Bot bot) {
+    public boolean executeCommand(String text, Long chatId, Bot bot) {
         SendMessage sendMessage = SendMessage.builder().chatId(Long.toString(chatId)).text(SETTINGS_TEXT_ACCESS).build();
 
         if (text.contains(" ")) {
@@ -32,7 +26,10 @@ public class Settings {
                 getEventsService.setKeyWord(fragments[0]);
                 getEventsService.setEventsQuantity(Integer.parseInt(fragments[1]));
             }
-            else sendMessage.setText("Неверные параметры!");
+            else {
+                sendMessage.setText("Неверные параметры!");
+                return false;
+            }
         }
 
         else {
@@ -44,14 +41,38 @@ public class Settings {
             }
             else if (matcherNumber.matches()) {
                 getEventsService.setEventsQuantity(Integer.parseInt(text));
-            } else sendMessage.setText("Неверные параметры!");
+            } else {
+                sendMessage.setText("Неверные параметры!");
+                return false;
+            }
         }
 
         bot.sendQueue.add(sendMessage);
+        return true;
     }
 
     public void showSettingsMessage(Long chatId, Bot bot) {
-        SendMessage sendMessage = SendMessage.builder().chatId(Long.toString(chatId)).text(SETTINGS_TEXT_ANSWER).build();
+        String settingsTextAnswer;
+        if (getEventsService.getKeyWord().isEmpty()) {
+            settingsTextAnswer = "Пожалуйста, отправьте сообщение в формате \"Java\" без кавычек, "
+                    + "если Вы желаете задать или изменить искомый язык программирования;\n\n"
+                    + "Если Вы хотите изменить количество отображаемых событий - отправьте сообщение в формате \"10\" без кавычек;\n\n"
+                    + "Если Вы хотите изменить и количество отображаемых событий, и задать или изменить язык программирования "
+                    + "- отправьте сообщение в формате \"Java 10\" без кавычек\n\n"
+                    + "Текущее искомое слово отсутствует;\n"
+                    + "Текущее количество выводимых результатов: " + getEventsService.getEventsQuantity();
+        }
+        else {
+            settingsTextAnswer = "Пожалуйста, отправьте сообщение в формате \"Java\" без кавычек, "
+                    + "если Вы желаете задать или изменить искомый язык программирования;\n\n"
+                    + "Если Вы хотите изменить количество отображаемых событий - отправьте сообщение в формате \"10\" без кавычек;\n\n"
+                    + "Если Вы хотите изменить и количество отображаемых событий, и задать или изменить язык программирования "
+                    + "- отправьте сообщение в формате \"Java 10\" без кавычек\n\n"
+                    + "Текущее искомое слово: " + getEventsService.getKeyWord() + ";\n"
+                    + "Текущее количество выводимых результатов: " + getEventsService.getEventsQuantity();
+        }
+
+        SendMessage sendMessage = SendMessage.builder().chatId(Long.toString(chatId)).text(settingsTextAnswer).build();
         bot.sendQueue.add(sendMessage);
     }
 }

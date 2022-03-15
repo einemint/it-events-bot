@@ -6,13 +6,18 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class GetEventsService {
+    @Getter
     private int eventsQuantity = 20;
+    @Setter
+    @Getter
     private String keyWord = "";
     private Session session = HibernateConnection.getSession();
     private ParseEventsService parseEventsService = new ParseEventsService();
@@ -20,16 +25,28 @@ public class GetEventsService {
     private ArrayList<String> formattedEvents = new ArrayList<>();
     private StringBuffer eventInfo;
 
+    private void updateEventsInDB() {
+        TimerTask repeatedTask = new TimerTask() {
+            public void run() {
+                getEventsList();
+            }
+        };
+        Timer timer = new Timer("timer");
+
+        long delay = 1000L;
+        long period = 1000L * 60L * 60L * 24L;
+        timer.scheduleAtFixedRate(repeatedTask, delay, period);
+    }
+
     private List<Event> getEventsList() {
         parseEventsService.parseEvents();
-
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Event> criteriaQuery = criteriaBuilder.createQuery(Event.class);
         Root<Event> rootEntry = criteriaQuery.from(Event.class);
         CriteriaQuery<Event> all = criteriaQuery.select(rootEntry);
         TypedQuery<Event> allQuery = session.createQuery(all);
 
-        return allQuery.setFirstResult(0).setMaxResults(eventsQuantity).getResultList();
+        return allQuery.getResultList();
     }
 
     private String getFormattedEventInfo(Event event) {
@@ -51,23 +68,31 @@ public class GetEventsService {
     }
 
     public ArrayList<String> getEvents() {
+        updateEventsInDB();
         formattedEvents.clear();
-        for (int counter = 0; counter < eventsQuantity; counter++) {
-            formattedEvents.add(getFormattedEventInfo(events.get(counter)));
+        if (keyWord.isEmpty()) {
+            for (int counter = 0; counter < eventsQuantity; counter++) {
+                formattedEvents.add(getFormattedEventInfo(events.get(counter)));
+            }
         }
 
-        if (!keyWord.isEmpty()) {
-            formattedEvents.removeIf(event -> !event.contains(keyWord));
+        else {
+            for (Event eventInstance : events) {
+                formattedEvents.add(getFormattedEventInfo(eventInstance));
+                formattedEvents.removeIf(event -> !event.contains(keyWord));
+            }
+
+            if (formattedEvents.size() > eventsQuantity) {
+                formattedEvents = (ArrayList<String>) formattedEvents.stream().limit(eventsQuantity).collect(Collectors.toList());
+            }
         }
 
         return formattedEvents;
     }
 
     public void setEventsQuantity(int quantity) {
-        eventsQuantity = quantity;
-    }
-
-    public void setKeyWord(String text) {
-        keyWord = text;
+        if (quantity <= 0) { eventsQuantity = 1; }
+        else if (quantity >= events.size()) { eventsQuantity = events.size(); }
+        else eventsQuantity = quantity;
     }
 }

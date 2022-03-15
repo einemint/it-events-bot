@@ -2,7 +2,7 @@ package Services;
 
 import Model.Event;
 import Model.HibernateConnection;
-import Config.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jsoup.Jsoup;
@@ -10,13 +10,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
+@Log4j2
 public class ParseEventsService {
     private final String DEFAULT_SITE_ADDRESS = "https://it-events.com/?type=upcoming";
     private final int EVENTS_IN_PAGE_QUANTITY = 20;
 
     private Session session = HibernateConnection.getSession();
-    private Transaction transaction = session.beginTransaction();
+    private Transaction transaction;
 
     private Document document;
     private Elements itemLinks;
@@ -37,7 +37,7 @@ public class ParseEventsService {
                 pagesQuantity = eventsQuantity / EVENTS_IN_PAGE_QUANTITY + 1;
             } else pagesQuantity = eventsQuantity / EVENTS_IN_PAGE_QUANTITY;
         }
-        catch (Exception exception) { Logger.getInstance().fatal(exception.getStackTrace()); }
+        catch (Exception exception) { log.fatal(exception.getStackTrace()); }
 
         return pagesQuantity;
     }
@@ -59,14 +59,14 @@ public class ParseEventsService {
                 session.persist(event);
             }
         }
-        catch (Exception exception) { Logger.getInstance().fatal(exception.getStackTrace()); }
+        catch (Exception exception) { log.fatal(exception.getStackTrace()); }
     }
 
     public void parseEvents() {
+        transaction = session.beginTransaction();
         for (int counter = 1; counter <= pagesQuantity; counter++) {
             parseEventsFromPage(counter);
         }
         transaction.commit();
-        session.close();
     }
 }

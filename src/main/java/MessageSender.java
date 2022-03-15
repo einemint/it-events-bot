@@ -1,9 +1,9 @@
-import Config.Logger;
-
+import lombok.extern.log4j.Log4j2;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
+@Log4j2
 public class MessageSender implements Runnable {
     private final int SENDER_SLEEP_TIME = 1000;
     private Bot bot;
@@ -23,11 +23,11 @@ public class MessageSender implements Runnable {
                 try {
                     Thread.sleep(SENDER_SLEEP_TIME);
                 } catch (Exception exception) {
-                    Logger.getInstance().fatal(exception.getStackTrace());
+                    log.fatal(exception.getStackTrace());
                 }
             }
         }
-        catch (Exception sendException) { Logger.getInstance().fatal(sendException.getStackTrace()); }
+        catch (Exception sendException) { log.fatal(sendException.getStackTrace()); }
     }
 
     private void send(Object object) {
@@ -35,8 +35,8 @@ public class MessageSender implements Runnable {
             if (object instanceof SendMessage) {
                 BotApiMethod<Message> message = (BotApiMethod<Message>) object;
                 bot.execute(message);
-            } else Logger.getInstance().fatal("Can't recognize response format");
+            } else log.fatal("Can't recognize response format");
         }
-        catch (Exception exception) { Logger.getInstance().fatal(exception.getStackTrace()); }
+        catch (Exception exception) { log.fatal(exception.getStackTrace()); }
     }
 }

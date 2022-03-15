@@ -1,7 +1,7 @@
-import Config.Logger;
-
+import lombok.extern.log4j.Log4j2;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+@Log4j2
 public class MessageReceiver implements Runnable {
     private final int WAIT_FOR_NEW_MESSAGE_DELAY = 1000;
 
@@ -22,7 +22,7 @@ public class MessageReceiver implements Runnable {
             try {
                 Thread.sleep(WAIT_FOR_NEW_MESSAGE_DELAY);
             } catch (Exception exception) {
-                Logger.getInstance().fatal(exception.getStackTrace());
+                log.fatal(exception.getStackTrace());
                 return;
             }
         }
@@ -36,7 +36,7 @@ public class MessageReceiver implements Runnable {
 
             commandHandler.handleMessage(text, chatId, bot);
         } else {
-            Logger.getInstance().fatal("Can't handle object: type of object isn't Update");
+            log.fatal("Can't handle object: type of object isn't Update");
         }
     }
 }

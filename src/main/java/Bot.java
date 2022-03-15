@@ -1,17 +1,17 @@
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-import Config.Logger;
-
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @NoArgsConstructor
+@Log4j2
 public class Bot extends TelegramLongPollingBot {
     private final int RECONNECT_PAUSE = 10000;
     @Setter
@@ -50,12 +50,12 @@ public class Bot extends TelegramLongPollingBot {
             telegramBotsApi.registerBot(this);
         }
         catch (Exception exception) {
-            Logger.getInstance().fatal(exception.getStackTrace());
+            log.fatal(exception.getStackTrace());
 
             try {
                 Thread.sleep(RECONNECT_PAUSE);
             } catch (Exception reconnectionException) {
-                Logger.getInstance().fatal(reconnectionException.getStackTrace());
+                log.fatal(reconnectionException.getStackTrace());
                 return;
             }
             botConnect();
