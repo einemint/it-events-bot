@@ -1,4 +1,7 @@
-import Services.GetEventsService;
+package Commands;
+
+import Bot.Bot;
+import Service.GetEventsService;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 public class CommandHandler {
@@ -20,12 +23,12 @@ public class CommandHandler {
         this.botName = botName;
     }
 
-    private boolean isCommand(String text) {
+    public boolean isCommand(String text) {
         if (text.startsWith(PREFIX_FOR_COMMAND)) return true;
         else return false;
     }
 
-    private boolean isCommandForBot(String text) {
+    public boolean isCommandForBot(String text) {
         if (text.contains(DELIMITER_COMMAND_BOTNAME)) {
             String botNameForEqual = text.substring(text.indexOf(DELIMITER_COMMAND_BOTNAME) + 1);
 

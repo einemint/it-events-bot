@@ -1,4 +1,4 @@
-package Services;
+package Service;
 
 import Model.Event;
 import Model.HibernateConnection;
@@ -7,7 +7,6 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.Session;
 
 import java.util.*;
@@ -16,7 +15,6 @@ import java.util.stream.Collectors;
 public class GetEventsService {
     @Getter
     private int eventsQuantity = 20;
-    @Setter
     @Getter
     private String keyWord = "";
     private Session session = HibernateConnection.getSession();
@@ -25,20 +23,7 @@ public class GetEventsService {
     private ArrayList<String> formattedEvents = new ArrayList<>();
     private StringBuffer eventInfo;
 
-    private void updateEventsInDB() {
-        TimerTask repeatedTask = new TimerTask() {
-            public void run() {
-                getEventsList();
-            }
-        };
-        Timer timer = new Timer("timer");
-
-        long delay = 1000L;
-        long period = 1000L * 60L * 60L * 24L;
-        timer.scheduleAtFixedRate(repeatedTask, delay, period);
-    }
-
-    private List<Event> getEventsList() {
+    public List<Event> getEventsList() {
         parseEventsService.parseEvents();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Event> criteriaQuery = criteriaBuilder.createQuery(Event.class);
@@ -49,7 +34,7 @@ public class GetEventsService {
         return allQuery.getResultList();
     }
 
-    private String getFormattedEventInfo(Event event) {
+    public String getFormattedEventInfo(Event event) {
         eventInfo = new StringBuffer();
         eventInfo.append("Тип: ").append(event.getType())
                 .append("\n").append("Название события: ").append(event.getTitle())
@@ -68,7 +53,6 @@ public class GetEventsService {
     }
 
     public ArrayList<String> getEvents() {
-        updateEventsInDB();
         formattedEvents.clear();
         if (keyWord.isEmpty()) {
             for (int counter = 0; counter < eventsQuantity; counter++) {
@@ -94,5 +78,13 @@ public class GetEventsService {
         if (quantity <= 0) { eventsQuantity = 1; }
         else if (quantity >= events.size()) { eventsQuantity = events.size(); }
         else eventsQuantity = quantity;
+    }
+
+    public void setKeyWord(String text) {
+        if (text.equals("Сброс")) {
+            keyWord = "";
+            eventsQuantity = 20;
+        }
+        else keyWord = text;
     }
 }

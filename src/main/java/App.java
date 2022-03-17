@@ -1,15 +1,35 @@
+import Bot.Bot;
+import MessageHandlers.MessageReceiver;
+import MessageHandlers.MessageSender;
+import Service.GetEventsService;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class App {
     private static final int PRIORITY_FOR_SENDER = 1;
     private static final int PRIORITY_FOR_RECEIVER = 2;
-    private static final String BOT_ADMIN_ID = "5147810668";
+    private static final String BOT_ADMIN_ID = "";
+    private final static String BOT_NAME = "";
+    private final static String TOKEN = "";
 
     public static void main(String[] args) {
-        Bot ITEventsBot = new Bot("it_events_fresher_bot", "5106867496:AAEu6VF0UA-eIADcw8OOL5YeDbIhY-ui7N0");
+        Bot ITEventsBot = new Bot(BOT_NAME, TOKEN);
 
         MessageReceiver messageReceiver = new MessageReceiver(ITEventsBot);
         MessageSender messageSender = new MessageSender(ITEventsBot);
+
+        GetEventsService getEventsService = new GetEventsService();
+        TimerTask updateEvents = new TimerTask() {
+            public void run() {
+                getEventsService.getEventsList();
+            }
+        };
+        Timer timer = new Timer("timer");
+        long delay = 1000L;
+        long period = 1000L * 60L * 60L * 24L;
+        timer.scheduleAtFixedRate(updateEvents, delay, period);
 
         ITEventsBot.botConnect();
 

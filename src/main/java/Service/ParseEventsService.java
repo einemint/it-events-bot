@@ -1,4 +1,4 @@
-package Services;
+package Service;
 
 import Model.Event;
 import Model.HibernateConnection;

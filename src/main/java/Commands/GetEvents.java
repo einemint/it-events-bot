@@ -1,4 +1,7 @@
-import Services.GetEventsService;
+package Commands;
+
+import Bot.Bot;
+import Service.GetEventsService;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.util.ArrayList;

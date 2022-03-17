@@ -1,4 +1,7 @@
-import Services.GetEventsService;
+package Commands;
+
+import Bot.Bot;
+import Service.GetEventsService;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.util.regex.Matcher;
@@ -22,7 +25,7 @@ public class Settings {
             Matcher matcherWord = PATTERN_WORD.matcher(fragments[0]);
             Matcher matcherNumber = PATTERN_NUMBER.matcher(fragments[1]);
 
-            if (matcherWord.matches() && matcherNumber.matches()) {
+            if (matcherWord.matches() && matcherNumber.matches() && fragments.length == 2) {
                 getEventsService.setKeyWord(fragments[0]);
                 getEventsService.setEventsQuantity(Integer.parseInt(fragments[1]));
             }
@@ -60,7 +63,8 @@ public class Settings {
                     + "Если Вы хотите изменить и количество отображаемых событий, и задать или изменить язык программирования "
                     + "- отправьте сообщение в формате \"Java 10\" без кавычек\n\n"
                     + "Текущее искомое слово отсутствует;\n"
-                    + "Текущее количество выводимых результатов: " + getEventsService.getEventsQuantity();
+                    + "Текущее количество выводимых результатов: " + getEventsService.getEventsQuantity() + "\n\n"
+                    + "Для сброса настроек наберите \"Сброс\" без кавычек";
         }
         else {
             settingsTextAnswer = "Пожалуйста, отправьте сообщение в формате \"Java\" без кавычек, "
@@ -69,7 +73,8 @@ public class Settings {
                     + "Если Вы хотите изменить и количество отображаемых событий, и задать или изменить язык программирования "
                     + "- отправьте сообщение в формате \"Java 10\" без кавычек\n\n"
                     + "Текущее искомое слово: " + getEventsService.getKeyWord() + ";\n"
-                    + "Текущее количество выводимых результатов: " + getEventsService.getEventsQuantity();
+                    + "Текущее количество выводимых результатов: " + getEventsService.getEventsQuantity() + "\n\n"
+                    + "Для сброса настроек наберите \"Сброс\" без кавычек";
         }
 
         SendMessage sendMessage = SendMessage.builder().chatId(Long.toString(chatId)).text(settingsTextAnswer).build();
