@@ -52,12 +52,12 @@ public class Bot extends TelegramLongPollingBot {
             telegramBotsApi.registerBot(this);
         }
         catch (Exception exception) {
-            log.fatal(exception.getStackTrace());
+            log.warn(exception.getStackTrace());
 
             try {
                 Thread.sleep(RECONNECT_PAUSE);
             } catch (Exception reconnectionException) {
-                log.fatal(reconnectionException.getStackTrace());
+                log.warn(reconnectionException.getStackTrace());
                 return;
             }
             botConnect();

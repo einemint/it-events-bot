@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b7f36272-f6d8-4ea8-9254-b072c3651ddc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/it_events_bot_exception.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logs/it_events_bot_info.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/system.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/it-event-bot/logs/parse_events_service.log" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/parse_events_service.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/it_events_bot_error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bot/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bot/Bot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MessageHandlers/MessageReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MessageHandlers/MessageReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MessageHandlers/MessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MessageHandlers/MessageSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/GetEventsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/GetEventsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Service/ParseEventsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/ParseEventsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Bot/Bot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Bot/Bot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Commands/CommandHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Commands/CommandHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Commands/GetEvents.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Commands/GetEvents.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Commands/Help.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Commands/Help.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Commands/Settings.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Commands/Settings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Commands/Start.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Commands/Start.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MessageHandlers/MessageReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MessageHandlers/MessageReceiver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MessageHandlers/MessageSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MessageHandlers/MessageSender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Model/HibernateConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/HibernateConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/GetEventsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/GetEventsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/ParseEventsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/ParseEventsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/AppTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/CommandHandlerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/CommandHandlerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/GetEventsServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/GetEventsServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/SettingsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/SettingsTest.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="26ICE77cF6sPspj4K8GxIrT1xB1" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mars_photos" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ekaterina Smirnova\IdeaProjects\it-events-bot\src\main\java\Data\Images" />
+      <recent name="C:\Users\Ekaterina Smirnova\IdeaProjects\it-events-bot\config" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="Commands" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="it-events-bot" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="it-events-bot" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AppTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommandHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="it-events-bot" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CommandHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GetEventsServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="it-events-bot" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GetEventsServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SettingsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="it-events-bot" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SettingsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.SettingsTest" />
+        <item itemvalue="JUnit.GetEventsServiceTest" />
+        <item itemvalue="JUnit.CommandHandlerTest" />
+        <item itemvalue="JUnit.AppTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b7f36272-f6d8-4ea8-9254-b072c3651ddc" name="Changes" comment="" />
+      <created>1647101601473</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647101601473</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

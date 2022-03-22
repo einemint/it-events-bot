@@ -37,7 +37,7 @@ public class ParseEventsService {
                 pagesQuantity = eventsQuantity / EVENTS_IN_PAGE_QUANTITY + 1;
             } else pagesQuantity = eventsQuantity / EVENTS_IN_PAGE_QUANTITY;
         }
-        catch (Exception exception) { log.fatal(exception.getStackTrace()); }
+        catch (Exception exception) { log.warn(exception.getStackTrace()); }
 
         return pagesQuantity;
     }
@@ -59,7 +59,7 @@ public class ParseEventsService {
                 session.persist(event);
             }
         }
-        catch (Exception exception) { log.fatal(exception.getStackTrace()); }
+        catch (Exception exception) { log.warn(exception.getStackTrace()); }
     }
 
     public void parseEvents() {

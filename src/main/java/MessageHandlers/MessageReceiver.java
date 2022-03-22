@@ -26,7 +26,7 @@ public class MessageReceiver implements Runnable {
             try {
                 Thread.sleep(WAIT_FOR_NEW_MESSAGE_DELAY);
             } catch (Exception exception) {
-                log.fatal(exception.getStackTrace());
+                log.warn(exception.getStackTrace());
                 return;
             }
         }
@@ -40,7 +40,7 @@ public class MessageReceiver implements Runnable {
 
             commandHandler.handleMessage(text, chatId, bot);
         } else {
-            log.fatal("Can't handle object: type of object isn't Update");
+            log.warn("Can't handle object: type of object isn't Update");
         }
     }
 }

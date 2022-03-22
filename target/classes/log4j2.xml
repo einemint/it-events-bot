@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="WARN">
-    <appenders>
-        <File name="parse_events_service" fileName="it-event-bot\logs\parse_events_service.log" immediateFlush="true">
-            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-            <LevelRangeFilter minlevel="info" maxlevel="info" onMatch="ACCEPT" onMismatch="DENY"/>
-        </File>
-    </appenders>
+<appenders>
+    <File name="info" fileName="logs\it_events_bot_info.log" immediateFlush="true">
+        <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        <LevelRangeFilter minlevel="info" maxlevel="info" onMatch="ACCEPT" onMismatch="DENY"/>
+    </File>
 
-    <loggers>
-        <Root level="all">
-            <AppenderRef ref="parse_events_service" level="fatal"/>
-        </Root>
-    </loggers>
+    <File name="error" fileName="logs\it_events_bot_error.log" immediateFlush="true">
+        <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        <LevelRangeFilter minlevel="error" maxlevel="error" onMatch="ACCEPT" onMismatch="DENY"/>
+    </File>
+
+    <File name="exception" fileName="logs\it_events_bot_exception.log" immediateFlush="true">
+        <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        <LevelRangeFilter minlevel="fatal" maxlevel="fatal" onMatch="ACCEPT" onMismatch="DENY"/>
+    </File>
+</appenders>
+
+<loggers>
+    <Root level="all">
+        <AppenderRef ref="info" level="info"/>
+        <AppenderRef ref="error" level="error"/>
+        <AppenderRef ref="exception" level="fatal"/>
+    </Root>
+</loggers>
 </configuration>

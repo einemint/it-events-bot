@@ -26,7 +26,7 @@ public class MessageSender implements Runnable {
                 try {
                     Thread.sleep(SENDER_SLEEP_TIME);
                 } catch (Exception exception) {
-                    log.fatal(exception.getStackTrace());
+                    log.warn(exception.getStackTrace());
                 }
             }
         }
@@ -38,8 +38,8 @@ public class MessageSender implements Runnable {
             if (object instanceof SendMessage) {
                 BotApiMethod<Message> message = (BotApiMethod<Message>) object;
                 bot.execute(message);
-            } else log.fatal("Can't recognize response format");
+            } else log.warn("Can't recognize response format");
         }
-        catch (Exception exception) { log.fatal(exception.getStackTrace()); }
+        catch (Exception exception) { log.warn(exception.getStackTrace()); }
     }
 }
