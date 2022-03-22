@@ -33,11 +33,9 @@ Java 16
 
 ## Usage
 
-The app is working and hosted on Heroku:
+The app is running and hosted on Heroku.
 
-www.link.com
-
-You can also try the bot in Telegram:
+You can try the bot in Telegram:
 
 @it_events_fresher_bot
 
