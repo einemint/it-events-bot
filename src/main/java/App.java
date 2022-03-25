@@ -10,9 +10,9 @@ import java.util.TimerTask;
 public class App {
     private static final int PRIORITY_FOR_SENDER = 1;
     private static final int PRIORITY_FOR_RECEIVER = 2;
-    private static final String BOT_ADMIN_ID = "";
-    private final static String BOT_NAME = "";
-    private final static String TOKEN = "";
+    private static final String BOT_ADMIN_ID = "5147810668";
+    private final static String BOT_NAME = "it_events_fresher_bot";
+    private final static String TOKEN = "5106867496:AAEu6VF0UA-eIADcw8OOL5YeDbIhY-ui7N0";
 
     public static void main(String[] args) {
         Bot ITEventsBot = new Bot(BOT_NAME, TOKEN);
