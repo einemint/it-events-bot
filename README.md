@@ -1,6 +1,6 @@
 # IT Events Bot
 
-IT Events Bot is a Telegram bot that sends a list of upcoming IT events in Russia.
+IT Events Bot is a Telegram bot sends a list of upcoming IT events in Russia.
 
 ## Built with
 
