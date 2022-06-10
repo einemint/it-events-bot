@@ -23,21 +23,6 @@ public class CommandHandler {
         this.botName = botName;
     }
 
-    public boolean isCommand(String text) {
-        if (text.startsWith(PREFIX_FOR_COMMAND)) return true;
-        else return false;
-    }
-
-    public boolean isCommandForBot(String text) {
-        if (text.contains(DELIMITER_COMMAND_BOTNAME)) {
-            String botNameForEqual = text.substring(text.indexOf(DELIMITER_COMMAND_BOTNAME) + 1);
-
-            return botName.equals(botNameForEqual);
-        }
-
-        return true;
-    }
-
     public void handleMessage(String text, Long chatId, Bot bot) {
         text = text.trim();
 
@@ -66,6 +51,21 @@ public class CommandHandler {
                     sendErrorMessage(chatId);
             }
         }
+    }
+    
+        public boolean isCommand(String text) {
+        if (text.startsWith(PREFIX_FOR_COMMAND)) return true;
+        else return false;
+    }
+
+    public boolean isCommandForBot(String text) {
+        if (text.contains(DELIMITER_COMMAND_BOTNAME)) {
+            String botNameForEqual = text.substring(text.indexOf(DELIMITER_COMMAND_BOTNAME) + 1);
+
+            return botName.equals(botNameForEqual);
+        }
+
+        return true;
     }
 
     private void sendErrorMessage(Long chatId) {
